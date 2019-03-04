@@ -7,13 +7,17 @@ function now() {
 function debounce(func, wait, immediate = true) {
   let timer, context, args
   const later = () =>
-    setTimeout(() => {
-      timer = null
-      if (!immediate) {
-        func.apply(this, arg)
-        context = args = null
-      }
-    }, wait)
+    new Promise( (resolve, reject) => {
+      setTimeout(() => {
+        timer = null
+        if (!immediate) {
+          func.apply(this, arg)
+          context = args = null
+        }
+        resolve()
+      }, wait)
+    })
+    
 
   return function(...params) {
     if (!timer) {
@@ -34,7 +38,7 @@ function debounce(func, wait, immediate = true) {
 }
 var nowD = debounce(now, 1000)
 
-nowD()
+nowD() // 1s 之后执行later
 
 let p = new Promise((resolve, reject) => {
   setTimeout(() => {
