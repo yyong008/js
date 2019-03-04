@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>page a</title>
+</head>
+<script>
+  function test() {
+
+    let op = window.open('b.html',  '_blank'); //打开新窗口，并建立窗口的引用变量op
+
+    function receiveMessage(event) {
+      console.log('event', event);
+
+    }
+
+    op.addEventListener("message", receiveMessage, false); //监听新开窗口发来的消息
+  }
+</script>
+
+<body>
+  <div>
+
+    <button onClick="test()">open</button>
+
+  </div>
+
+</body>
+
+
+<!-- ---------------------
+作者：Jason_wu86
+来源：CSDN
+原文：https://blog.csdn.net/weixin_40650646/article/details/81777398
+版权声明：本文为博主原创文章，转载请附上博文链接！ -->

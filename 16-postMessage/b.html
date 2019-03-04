@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>page b</title>
+</head>
+<script>
+  function post() {
+    window.postMessage("hi there!", location.origin); //发送到所有同源的窗口，注意，当前窗口也会收到
+  }
+
+  function receiveMessage(event) {
+    console.log('event', event)
+ 
+  }
+  window.addEventListener("message", receiveMessage, false);
+</script>
+
+<body>
+  <div>
+
+    <button onClick="post()">postMessage</button>
+
+  </div>
+
+</body>
+
+</html>
